@@ -5,7 +5,7 @@ from collections import Counter
 import plotly.express as px
 from plotly.offline import plot
 from .api import get_dict, reset_dict
-from common import cache
+from whatsNext import cache
 from os import path
 
 
