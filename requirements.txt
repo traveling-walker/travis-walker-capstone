@@ -4,4 +4,3 @@ flask-caching
 pandas
 scikit-learn
 plotly
-gunicorn
