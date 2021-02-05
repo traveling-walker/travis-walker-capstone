@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}{{username}}'s Record Collection{% endblock %}
+
+{% block content %}
+
+<h1>Welcome to Your Record Collection, {{username}}!</h1>
+Data provided by
+<a href="https://www.discogs.com/user/{{username}}/collection"
+   title="Discogs' Link" target="_blank">Discogs</a>
+
+<h2>To begin, click to select the album you're spinning right now.</h2>
+
+<form method="post">
+    <input type="text" name="string" value="{{search}}">
+    <input class="button" type="submit" name="search" value="Search">
+    <input class="button" type="submit" name="reset" value="Reset">
+    <input class="button" type="submit" name="random" value="Random Album">
+</form>
+
+<br>
+
+<table>
+    <tr>
+        <th>Artist</th>
+        <th>Album</th>
+    </tr>
+    {% for key, value in releases.iterrows() %}
+    <tr>
+        <td>
+            <a href="{{ url_for('release', release_id=value['release_id']) }}"
+               title="{{ value['artist_name']}} - {{value['release_name']}}">
+                {{ value['artist_name']}}
+            </a>
+        </td>
+        <td>
+            <a href="{{ url_for('release', release_id=value['release_id']) }}"
+               title="{{ value['artist_name']}} - {{value['release_name']}}"
+            >
+                {{value['release_name']}}
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

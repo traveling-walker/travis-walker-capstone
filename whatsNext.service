@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve whatsNext web application
+After=network.target
+
+[Service]
+User=travis
+Group=www-data
+WorkingDirectory=/home/travis/capstone
+Environment="PATH=/home/travis/capstone/venv/bin"
+ExecStart=/home/travis/capstone/venv/bin/gunicorn --bind 0.0.0.0 --timeout 120 --access-logfile access.log  --access-logformat '%(h)s %(t)s "%(r)s" Status Code: %(s)s Response Took: %(L)s Seconds' wsgi:app
+
+[Install]
+WantedBy=multi-user.target

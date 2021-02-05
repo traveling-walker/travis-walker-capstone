@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+
+<ul class="nav">
+    <li class="nav"><a href="{{url_for('releases')}}">Collection</a></li>
+    <li class="nav"><a href="{{url_for('stats')}}">Statistics</a></li>
+    <li class="nav"><a href="{{url_for('similarity')}}">Similarity Matrix</a></li>
+    <li class="nav" style="float:right"><a href="{{url_for('index')}}">Start Over</a></li>
+</ul>
+
+<body>
+
+    {% block content %}{% endblock%}
+
+</body>
+<footer>
+    <p>
+        This application uses Discogs’ API but is not affiliated with,
+        sponsored or endorsed by Discogs.
+        <br>
+        ‘Discogs’ is a trademark of Zink Media, LLC.
+    </p>
+</footer>
+</html>

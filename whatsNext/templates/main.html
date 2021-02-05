@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>What's Next</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+
+<body>
+    <h1>Welcome to What's Next!</h1>
+    
+    <p>
+        What's Next is a music recommendation & analysis tool for vinyl enthusiasts.
+        <br>
+        Please input your Discogs username below to begin.
+        <br>
+        <form method="post">
+            <input type="text" name="username" value="ClForbin">
+            <br><br>
+            Sort Collection by:
+            <input type="radio" id="artist" name="sort" value="artist">
+            <label for="artist">Artist Alphabetically</label>
+            &nbsp;|&nbsp;
+            <input type="radio" id="added" name="sort" value="added" checked>
+            <label for="added">Recently Added</label> <br>
+            <br>
+            <button class="button" type="submit">Submit</button>
+        </form>
+        <br>
+        Once you click Submit, please be patient as your collection is synced.
+        <br>
+        Depending on its size, this may take several minutes.
+        <br>
+    </p>
+</body>
+<footer>
+    <p>
+        This application uses Discogs’ API but is not affiliated with,
+        sponsored or endorsed by Discogs.
+        <br>
+        ‘Discogs’ is a trademark of Zink Media, LLC.
+    </p>
+</footer>
+</html>

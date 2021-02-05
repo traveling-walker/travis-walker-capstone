@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Record Collection Statistics{% endblock %}
+
+{% block content %}
+
+<div class="flex-container">
+    <div>{{ pie | safe }}</div>
+    <div>{{ bar | safe}}</div>
+    <div>
+        <table style="width:100%; background-color: white;">
+            <caption style="background-color: white">
+                <h3>10 Most Represented Artists</h3>
+            </caption>
+            <tr>
+                <th>Artist</th>
+                <th># Albums</th>
+            </tr>
+            {% for key, value in ten.iteritems() %}
+            <tr>
+                <td>{{key}}</td>
+                <td>{{value}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <br>
+</div>
+
+{% endblock %}

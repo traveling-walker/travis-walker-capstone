@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}API Error Encountered{% endblock %}
+
+{% block content %}
+    <p>
+        An error was encountered with Discogs' API. <br>
+        Please ensure that "{{username}}"  is a valid Discogs username. <br>
+        This will fail if your collection is set to private.
+    </p>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{choice['artist_name']}} - {{choice['release_name']}}
+{% endblock %}
+
+{% block content %}
+<h3>Now Playing:</h3>
+<h1>
+    {{choice['artist_name']}} - {{choice['release_name']}}
+</h1>
+Data provided by
+<a href="https://www.discogs.com/release/{{release_id}}" title="Discogs' Link" target="_blank">
+    Discogs
+</a>
+<br>
+<br>
+<div class="flex-container">
+    {% if choice['genres'] %}
+    <div>
+        Genres:
+        <ul>
+            {% for genre in choice['genres'] %}
+            <li>{{genre}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    {% if choice['styles'] %}
+    <div>
+        Styles:
+        <ul>
+            {% for style in choice['styles'] %}
+            <li>{{style}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+<h2> Here are some other albums that you might want to spin next! </h2>
+<table>
+    <tr>
+        <th>Artist</th>
+        <th>Album</th>
+        <th>Similarity</th>
+    </tr>
+    {% for key, album in similar.iterrows() %}
+    <tr>
+        <td>
+            <a href="{{url_for('release', release_id=album['release_id']) }}">
+                {{album['artist_name']}}
+            </a>
+        </td>
+        <td>
+            <a href="{{url_for('release', release_id=album['release_id']) }}">
+                {{album['release_name']}}
+            </a>
+        </td>
+        <td>
+            <a href="{{url_for('release', release_id=album['release_id']) }}">
+                {{ '{:.1f}%'.format(album['similarity']*100) }}
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<br>
+{% endblock %}
