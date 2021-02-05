@@ -1,7 +1,10 @@
 from flask import Flask
-from common import cache
+from flask_caching import Cache
+
 
 app = Flask(__name__)
+
+cache = Cache()
 
 cache.init_app(app=app, config={
     "CACHE_TYPE": "filesystem",

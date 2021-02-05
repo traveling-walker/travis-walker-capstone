@@ -1,7 +1,7 @@
 import requests
 from time import sleep
 import random
-from common import cache
+from whatsNext import cache
 
 
 parameters = {
