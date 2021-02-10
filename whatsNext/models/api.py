@@ -71,7 +71,7 @@ def parse_collection(response):
             resource_url = r['resource_url']
             year = r['year']
 
-            cover_url = r['thumb']
+            cover_url = r['cover_image']
 
             genre_list = [i for i in r['genres']]
             style_list = [i for i in r['styles']]
