@@ -71,6 +71,8 @@ def parse_collection(response):
             resource_url = r['resource_url']
             year = r['year']
 
+            cover_url = r['thumb']
+
             genre_list = [i for i in r['genres']]
             style_list = [i for i in r['styles']]
 
@@ -82,6 +84,7 @@ def parse_collection(response):
                 "genres": genre_list,
                 "styles": style_list,
                 "resource_url": resource_url,
+                "cover_url": cover_url
             }
 
     pagination = response.json()['pagination']
