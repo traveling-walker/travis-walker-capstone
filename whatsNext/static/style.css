@@ -109,3 +109,14 @@ and (-webkit-device-pixel-ratio : 2) {
 .flex-container > div {
     margin: 5px;
     }
+
+img {
+    border-radius: 10px;
+    width: 275px;
+    height: 275px;
+    }
+
+#cover {
+    width: 450px;
+    height: 450px;
+    }

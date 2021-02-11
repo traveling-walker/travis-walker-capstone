@@ -7,10 +7,12 @@
 {% block content %}
 <h3>Now Playing:</h3>
 <a href="https://www.discogs.com/release/{{release_id}}" title="Discogs' Link" target="_blank">
-    <img src="{{choice['cover_url']}}">
+    <img id="cover" src="{{choice['cover_url']}}">
 </a>
 <h1>
-    {{choice['artist_name']}} - {{choice['release_name']}}
+    {{choice['artist_name']}}
+    <br>
+    {{choice['release_name']}}
 </h1>
 Data provided by
 <a href="https://www.discogs.com/release/{{release_id}}" title="Discogs' Link" target="_blank">

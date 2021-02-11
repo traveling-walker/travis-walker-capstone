@@ -20,28 +20,13 @@ Data provided by
 
 <br>
 
-<table>
-    <tr>
-        <th>Artist</th>
-        <th>Album</th>
-    </tr>
-    {% for key, value in releases.iterrows() %}
-    <tr>
-        <td>
-            <a href="{{ url_for('release', release_id=value['release_id']) }}"
-               title="{{ value['artist_name']}} - {{value['release_name']}}">
-                {{ value['artist_name']}}
-            </a>
-        </td>
-        <td>
-            <a href="{{ url_for('release', release_id=value['release_id']) }}"
-               title="{{ value['artist_name']}} - {{value['release_name']}}"
-            >
-                {{value['release_name']}}
-            </a>
-        </td>
-    </tr>
-    {% endfor %}
-</table>
+
+{% for key, value in releases.iterrows() %}
+    <a href="{{ url_for('release', release_id=value['release_id']) }}"
+       title="{{ value['artist_name']}} - {{value['release_name']}}">
+        <img src="{{value['cover_url']}}">
+    </a>
+{% endfor %}
+
 
 {% endblock %}
