@@ -114,6 +114,11 @@ img {
     border-radius: 10px;
     width: 275px;
     height: 275px;
+    margin: 5px;
+    }
+
+.cover_link {
+    text-decoration: none;
     }
 
 #cover {
