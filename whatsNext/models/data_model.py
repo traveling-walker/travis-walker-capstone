@@ -168,8 +168,6 @@ def get_similar(release_id):
     similar = similar[0:10]
     cache.set("similar", similar)
 
-    print(similar['descriptors'])
-
     return similar
 
 
