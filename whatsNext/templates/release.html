@@ -54,31 +54,15 @@ Data provided by
 
 </div>
 <h2> Here are some other albums that you might want to spin next! </h2>
-<table>
-    <tr>
-        <th>Artist</th>
-        <th>Album</th>
-        <th>Similarity</th>
-    </tr>
-    {% for key, album in similar.iterrows() %}
-    <tr>
-        <td>
-            <a href="{{url_for('release', release_id=album['release_id']) }}">
-                {{album['artist_name']}}
-            </a>
-        </td>
-        <td>
-            <a href="{{url_for('release', release_id=album['release_id']) }}">
-                {{album['release_name']}}
-            </a>
-        </td>
-        <td>
-            <a href="{{url_for('release', release_id=album['release_id']) }}">
-                {{ '{:.1f}%'.format(album['similarity']*100) }}
-            </a>
-        </td>
-    </tr>
-    {% endfor %}
-</table>
+
+{% for key, album in similar.iterrows() %}
+
+    <a href="{{url_for('release', release_id=album['release_id']) }}"
+       title="{{ album['artist_name']}} - {{album['release_name']}}">
+        <img src="{{album['cover_url']}}">
+    </a>
+
+{% endfor %}
+
 <br>
 {% endblock %}

@@ -167,14 +167,14 @@ def get_similar(release_id):
     similar.reset_index(drop=True, inplace=True)
 
     i = 1
-    while i < 10:
+    while i < 9:
         if similar.iloc[i].artist_id in similar[0:i].artist_id.values:
             similar.drop(similar.index[i], inplace=True)
         else:
             i += 1
 
-    # Return the top ten most similar albums
-    similar = similar[0:10]
+    # Return the top nine most similar albums
+    similar = similar[0:9]
     cache.set("similar", similar)
 
     return similar
