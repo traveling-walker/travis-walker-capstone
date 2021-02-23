@@ -164,6 +164,15 @@ def get_similar(release_id):
     # Filter out any additional albums by the same artist
     similar = similar[similar['artist_id'] != artist_id]
 
+    similar.reset_index(drop=True, inplace=True)
+
+    i = 1
+    while i < 10:
+        if similar.iloc[i].artist_id in similar[0:i].artist_id.values:
+            similar.drop(similar.index[i], inplace=True)
+        else:
+            i += 1
+
     # Return the top ten most similar albums
     similar = similar[0:10]
     cache.set("similar", similar)
