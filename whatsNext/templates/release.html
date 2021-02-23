@@ -10,9 +10,7 @@
     <img id="cover" src="{{choice['cover_url']}}">
 </a>
 <h1>
-    {{choice['artist_name']}}
-    <br>
-    {{choice['release_name']}}
+    {{choice['artist_name']}} - {{choice['release_name']}}
 </h1>
 Data provided by
 <a href="https://www.discogs.com/release/{{release_id}}" title="Discogs' Link" target="_blank">
@@ -22,34 +20,21 @@ Data provided by
 <br>
 <div class="flex-container">
     {% if choice['genres'] %}
-    <div>
-        Genres:
-        <ul>
-            {% for genre in choice['genres'] %}
-            <li>{{genre}}</li>
-            {% endfor %}
-        </ul>
-    </div>
+        <div>
+            Genres: {{', '.join(choice['genres'])}}
+        </div>
     {% endif %}
 
     {% if choice['styles'] %}
-    <div>
-        Styles:
-        <ul>
-            {% for style in choice['styles'] %}
-            <li>{{style}}</li>
-            {% endfor %}
-        </ul>
-    </div>
+        <div>
+            Styles: {{', '.join(choice['styles'])}}
+        </div>
     {% endif %}
 
     {% if choice['descriptors'] %}
-    <div>
-        Descriptors:
-        <ul>
-            <li>{{', '.join(choice['descriptors'])}}</li>
-        </ul>
-    </div>
+        <div>
+            Descriptors: {{', '.join(choice['descriptors'])}}
+        </div>
     {% endif %}
 
 </div>
