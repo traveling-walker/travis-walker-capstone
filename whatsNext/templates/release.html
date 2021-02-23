@@ -42,7 +42,8 @@ Data provided by
 
 {% for key, album in similar.iterrows() %}
 
-    <a href="{{url_for('release', release_id=album['release_id']) }}"
+    <a class="cover_link"
+       href="{{url_for('release', release_id=album['release_id']) }}"
        title="{{ album['artist_name']}} - {{album['release_name']}}">
         <img src="{{album['cover_url']}}">
     </a>
