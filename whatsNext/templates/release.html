@@ -42,6 +42,16 @@ Data provided by
         </ul>
     </div>
     {% endif %}
+
+    {% if choice['descriptors'] %}
+    <div>
+        Descriptors:
+        <ul>
+            <li>{{', '.join(choice['descriptors'])}}</li>
+        </ul>
+    </div>
+    {% endif %}
+
 </div>
 <h2> Here are some other albums that you might want to spin next! </h2>
 <table>

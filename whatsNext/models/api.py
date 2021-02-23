@@ -59,6 +59,19 @@ def parse_collection(response):
     # Iterate through every release (r) in the API's response
     for r in response.json()['releases']:
         release_id = r['id']
+
+        descriptors = ""
+
+        try:
+            for entry in r['notes']:
+                if entry['field_id'] == 5:
+                    descriptors = entry['value'].split(', ')
+                    if 'male vocals' in descriptors:
+                        descriptors.remove('male vocals')
+                    descriptors = [descriptor.title() for descriptor in descriptors]
+        except KeyError:
+            pass
+
         # Drill to the release's 'basic_information' field
         r = r['basic_information']
 
@@ -84,7 +97,8 @@ def parse_collection(response):
                 "genres": genre_list,
                 "styles": style_list,
                 "resource_url": resource_url,
-                "cover_url": cover_url
+                "cover_url": cover_url,
+                "descriptors": descriptors
             }
 
     pagination = response.json()['pagination']

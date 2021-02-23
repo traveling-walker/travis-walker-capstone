@@ -101,7 +101,8 @@ def create_soup(x):
            ' '.join(x['member_list']) + ' ' + \
            ' '.join(x['group_list']) + ' ' + \
            ' '.join(x['genres']) + ' ' +\
-           ' '.join(x['styles'])
+           ' '.join(x['styles']) + ' ' +\
+           ' '.join(x['descriptors'])
 
 
 def transform_data(release_dict):
@@ -118,6 +119,7 @@ def transform_data(release_dict):
     # Clean the genre & style attributes
     df['genres'] = df['genres'].apply(clean_string)
     df['styles'] = df['styles'].apply(clean_string)
+    df['descriptors'] = df['descriptors'].apply(clean_string)
 
     # Merge in the artist_df, so now each release contains band member info (where present)
     df = df.merge(get_artist_df(), how="left", on="artist_id").set_index(df.index)
@@ -165,6 +167,9 @@ def get_similar(release_id):
     # Return the top ten most similar albums
     similar = similar[0:10]
     cache.set("similar", similar)
+
+    print(similar['descriptors'])
+
     return similar
 
 
