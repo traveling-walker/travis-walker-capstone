@@ -3,8 +3,6 @@ from time import sleep
 import random
 from whatsNext import cache
 import requests
-from io import BytesIO
-from colorthief import ColorThief
 
 parameters = {
         'token': 'APYOBXqWIdcxaqcIXocdhBXRNsJmDWuudziElTej',
@@ -87,8 +85,7 @@ def parse_collection(response):
             year = r['year']
 
             cover_url = r['cover_image']
-
-            cover_color = get_color(r['thumb'])
+            thumb_url = r['thumb']
 
             genre_list = [i for i in r['genres']]
             style_list = [i for i in r['styles']]
@@ -103,7 +100,7 @@ def parse_collection(response):
                 "resource_url": resource_url,
                 "cover_url": cover_url,
                 "descriptors": descriptors,
-                "cover_color": cover_color
+                "thumb_url": thumb_url
             }
 
     pagination = response.json()['pagination']
@@ -122,13 +119,6 @@ def parse_collection(response):
 
 def get_dict():
     return cache.get("release_dict")
-
-
-def get_color(url):
-    if url:
-        return ColorThief(BytesIO(requests.get(url).content)).get_color(quality=1)
-    else:
-        return (0, 0, 0)
 
 
 def reset_dict():

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{choice['artist_name']}} - {{choice['release_name']}}
+{% endblock %}
+
+{% block content %}
+<h3>Now Playing:</h3>
+<a href="https://www.discogs.com/release/{{release_id}}" title="Discogs' Link" target="_blank">
+    <img id="cover" src="{{choice['cover_url']}}">
+</a>
+<h1>
+    {{choice['artist_name']}} - {{choice['release_name']}}
+</h1>
+Data provided by
+<a href="https://www.discogs.com/release/{{release_id}}" title="Discogs' Link" target="_blank">
+    Discogs
+</a>
+<br>
+<br>
+<div class="flex-container">
+    {% if choice['genres'] %}
+        <div>
+            Genres: {{', '.join(choice['genres'])}}
+        </div>
+    {% endif %}
+
+    {% if choice['styles'] %}
+        <div>
+            Styles: {{', '.join(choice['styles'])}}
+        </div>
+    {% endif %}
+
+    {% if choice['descriptors'] %}
+        <div>
+            Descriptors: {{', '.join(choice['descriptors'])}}
+        </div>
+    {% endif %}
+
+</div>
+<h3><a href="{{url_for('release', release_id=release_id)}}"> Click Here to View Similar Albums by Genre/Style/Descriptor</a></h3>
+<h2> Here are some other albums that you might want to spin next! </h2>
+
+{% for key, album in similar.iterrows() %}
+
+    <a class="cover_link"
+       href="{{url_for('release', release_id=album['release_id']) }}"
+       title="{{ album['artist_name']}} - {{album['release_name']}}">
+        <img src="{{album['cover_url']}}">
+    </a>
+
+{% endfor %}
+
+<br>
+{% endblock %}
