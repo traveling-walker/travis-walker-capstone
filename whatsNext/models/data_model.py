@@ -7,6 +7,7 @@ from plotly.offline import plot
 from .api import get_dict, reset_dict
 from whatsNext import cache
 from os import path
+from math import sqrt
 
 
 def get_artist_df():
@@ -138,6 +139,18 @@ def transform_data(release_dict):
     cache.set("cosine_sim", cosine_sim)
 
     analysis(df)
+
+
+def get_closest_color(release_id):
+    df = cache.get("df")
+    r, g, b = df[df['release_id'] == release_id].iloc[0]['cover_color']
+
+    for idx, release in df.iterrows():
+        cr, cg, cb = release['cover_color']
+        color_diff = sqrt((r - cr) ** 2 + (g - cg) ** 2 + (b - cb) ** 2)
+        df.at[idx, 'color_diff'] = color_diff
+
+    return df.sort_values(by='color_diff')[1:10]
 
 
 def get_similar(release_id):

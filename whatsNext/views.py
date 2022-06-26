@@ -70,6 +70,22 @@ def release(release_id):
         abort(404)
 
 
+@app.route('/releases/<int:release_id>/color')
+def color(release_id):
+    #
+    try:
+        return render_template(
+            'color.html',
+            choice=get_dict()[release_id],
+            release_id=release_id,
+            similar=get_closest_color(release_id)
+        )
+    except IndexError:
+        abort(404)
+    except KeyError:
+        abort(404)
+
+
 @app.route('/data/stats')
 def stats():
     return render_template(
