@@ -8,6 +8,9 @@ from .api import get_dict, reset_dict
 from whatsNext import cache
 from os import path
 from math import sqrt
+from io import BytesIO
+from colorthief import ColorThief
+import requests
 
 
 def get_artist_df():
@@ -106,6 +109,13 @@ def create_soup(x):
            ' '.join(x['descriptors'])
 
 
+def get_color(url):
+    if url['thumb_url']:
+        return ColorThief(BytesIO(requests.get(url['thumb_url']).content)).get_color(quality=1)
+    else:
+        return (0, 0, 0)
+
+
 def transform_data(release_dict):
     # Make a DataFrame from the passed in dictionary containing the user's record collection
     # Reset the df's index to and rename the newly made 'index' col to 'release_id'
@@ -121,6 +131,8 @@ def transform_data(release_dict):
     df['genres'] = df['genres'].apply(clean_string)
     df['styles'] = df['styles'].apply(clean_string)
     df['descriptors'] = df['descriptors'].apply(clean_string)
+
+    df['cover_color'] = df.apply(get_color, axis=1)
 
     # Merge in the artist_df, so now each release contains band member info (where present)
     df = df.merge(get_artist_df(), how="left", on="artist_id").set_index(df.index)
