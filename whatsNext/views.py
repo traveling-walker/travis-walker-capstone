@@ -60,7 +60,7 @@ def release(release_id):
     try:
         return render_template(
             'release.html',
-            choice=get_dict()[release_id],
+            choice=get_df()[get_df()['release_id'] == release_id].iloc[0].to_dict(),
             release_id=release_id,
             similar=get_similar(release_id)
         )
@@ -76,7 +76,7 @@ def color(release_id):
     try:
         return render_template(
             'color.html',
-            choice=get_dict()[release_id],
+            choice=get_df()[get_df()['release_id'] == release_id].iloc[0].to_dict(),
             release_id=release_id,
             similar=get_closest_color(release_id)
         )

@@ -110,8 +110,9 @@ def create_soup(x):
 
 
 def get_color(url):
+    print(url['release_name'])
     if url['thumb_url']:
-        return ColorThief(BytesIO(requests.get(url['thumb_url']).content)).get_color(quality=1)
+        return ColorThief(BytesIO(requests.get(url['thumb_url']).content)).get_color(quality=2)
     else:
         return (0, 0, 0)
 

@@ -38,7 +38,7 @@ Data provided by
     {% endif %}
 
 </div>
-<h3><a href="{{url_for('color', release_id=release_id)}}"> Click Here to View Similarly Colored Album Covers</a></h3>
+<h3><a style="color:rgb{{choice['cover_color']}}"  href="{{url_for('color', release_id=release_id)}}"> Click Here to View Similarly Colored Album Covers</a></h3>
 <h2> Here are some other albums that you might want to spin next! </h2>
 
 {% for key, album in similar.iterrows() %}
