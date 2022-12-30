@@ -12,6 +12,9 @@ from io import BytesIO
 from colorthief import ColorThief
 import requests
 
+headers = {
+    'user-agent': 'whatsNext/0.1'
+}
 
 def get_artist_df():
     artist_df = cache.get("artist_df")
@@ -112,7 +115,7 @@ def create_soup(x):
 def get_color(url):
     print(url['release_name'])
     if url['thumb_url']:
-        return ColorThief(BytesIO(requests.get(url['thumb_url']).content)).get_color(quality=2)
+        return ColorThief(BytesIO(requests.get(url['thumb_url'], headers=headers).content)).get_color(quality=2)
     else:
         return (0, 0, 0)
 

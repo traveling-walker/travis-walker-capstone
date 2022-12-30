@@ -1,9 +1,9 @@
-requests~=2.25.1
-flask~=1.1.2
+requests
+flask
 flask-caching
-pandas~=1.2.0
-scikit-learn~=0.24.0
-plotly~=4.14.3
+pandas
+scikit-learn
+plotly
 gunicorn
 wheel
-colorthief~=0.2.1
+colorthief

@@ -2,7 +2,6 @@ import requests
 from time import sleep
 import random
 from whatsNext import cache
-import requests
 
 parameters = {
         'token': 'APYOBXqWIdcxaqcIXocdhBXRNsJmDWuudziElTej',
